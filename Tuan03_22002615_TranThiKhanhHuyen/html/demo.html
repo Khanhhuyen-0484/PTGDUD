@@ -1,0 +1,180 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cheffify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/css.css">
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-sm">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="flex items-center">
+          <img alt="Cheffify logo" class="h-10 w-10" height="40" src="../jpg/logo.PNG" width="40"/>
+          <span class="ml-2 text-xl font-bold text-pink-600">Cheffify</span>
+        </div>
+        <div class="relative">
+  <button class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600">
+    <i class="fas fa-search"></i>
+  </button>
+  <input class="border rounded-full pl-10 pr-4 py-2" placeholder="cakescascsa" type="text" />
+</div>
+
+          <nav class="hidden md:flex space-x-4">
+            <a class="text-gray-600 hover:text-pink-600" href="#">What's cook</a>
+            <a class="text-gray-600 hover:text-pink-600" href="#">Recipes</a>
+            <a class="text-gray-600 hover:text-pink-600" href="#">Ingredients</a>
+            <a class="text-gray-600 hover:text-pink-600" href="#">Discover</a>
+            <a class="text-gray-600 hover:text-pink-600" href="#">About us</a>
+          </nav>
+          <div class="flex items-center space-x-2">
+            <button class="bg-pink-600 text-white px-4 py-2 rounded-full">Your Recipe Box</button>
+            <img alt="User profile picture" class="h-10 w-10 rounded-full" height="40" src="../jpg/avt.PNG" width="40"/>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+      <div class="flex-container">
+
+        <aside class="sidebar">
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-lg font-bold mb-4"> <i class="fas fa-bars text-gray-600 mr-2"></i>FILTERS
+            </h2>
+            <div class="mb-4">
+                <h3 class="font-semibold mb-2 flex justify-between items-center">
+                    <span>Type</span>
+                    <i class="fas fa-angle-up text-pink-600 mr-2"></i>
+                  </h3>                 
+              <div class="space-y-2">
+                <div class="flex space-x-8">
+                    
+                    <div class="space-y-2">
+                      <label class="flex items-center">
+                        <input class="mr-2" type="checkbox"/> Stir-fried
+                      </label>
+                      <label class="flex items-center">
+                        <input class="mr-2" type="checkbox"/> Roasted
+                      </label>
+                      <label class="flex items-center">
+                        <input class="mr-2" type="checkbox"/> Baked
+                      </label>
+                      <label class="flex items-center">
+                        <input class="mr-2" type="checkbox"/> Stewed
+                      </label>
+                    </div>
+                  
+                    <div class="space-y-2">
+                      <label class="flex items-center">
+                        <input class="mr-2" type="checkbox"/> Pan-fried
+                      </label>
+                      <label class="flex items-center">
+                        <input class="mr-2" type="checkbox"/> Grilled
+                      </label>
+                      <label class="flex items-center">
+                        <input class="mr-2" type="checkbox"/> Sauteed
+                      </label>
+                      <label class="flex items-center">
+                        <input class="mr-2" type="checkbox"/> Steamed
+                      </label>
+                    </div>
+                  </div>
+                             
+              </div>
+              <div>
+            </div>
+            <div class="mb-4">
+                <h3 class="font-semibold mb-2 flex justify-between items-center">
+                    <span>Time</span>
+                    <i class="fas fa-angle-up text-pink-600 mr-2"></i>
+                  </h3>   
+              <input class="w-full" max="60" min="0" type="range"/>
+              <div class="flex justify-between text-sm text-gray-600">
+                <span>0 min</span>
+                <span>60 min</span>
+              </div>
+              
+            </div>
+            <div class="mb-4">
+                <h3 class="font-semibold mb-2 flex justify-between items-center">
+                    <span>Rating</span>
+                    <i class="fas fa-angle-up text-pink-600 mr-2"></i>
+                  </h3>   
+              <div class="space-y-2">
+                <label class="flex items-center">
+                  <input class="mr-2" type="checkbox"/>
+                  <i class="fas fa-star text-yellow-500"></i>
+                  <i class="fas fa-star text-yellow-500"></i>
+                  <i class="fas fa-star text-yellow-500"></i>
+                  <i class="fas fa-star text-yellow-500"></i>
+                  <i class="fas fa-star text-yellow-500"></i>
+                </label>
+                <label class="flex items-center">
+                    <input class="mr-2" type="checkbox"/>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star checked"></i>
+                </label>
+                <label class="flex items-center">
+                    <input class="mr-2" type="checkbox"/>
+                    <i class="fas fa-star text-yellow-500 "></i>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star checked"></i>
+                    <i class="fas fa-star checked"></i>
+                </label>
+                <label class="flex items-center">
+                    <input class="mr-2" type="checkbox"/>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star checked"></i>
+                    <i class="fas fa-star checked"></i>
+                    <i class="fas fa-star checked"></i>
+                </label>
+                <label class="flex items-center">
+                    <input class="mr-2" type="checkbox"/>
+                  <i class="fas fa-star text-yellow-500"></i>
+                  <i class="fas fa-star checked"></i>
+                  <i class="fas fa-star checked"></i>
+                  <i class="fas fa-star checked"></i>
+                  <i class="fas fa-star checked"></i>
+                </label>
+              </div>
+            </div>
+            <button class="bg-pink-600 text-white w-full py-2 rounded-full">Apply</button>
+          </div>
+        </aside>
+
+        <section class="main-content">
+          <div class="bg-white p-8 rounded-lg shadow text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                Sorry, no results were found for “cakescascsa”
+              </h2>
+            <img alt="No results icon" class="mx-auto mb-4" height="200" src="../jpg/h2.PNG" width="200"/>
+            
+            <p class="text-gray-600 mb-4">
+              We have all your Independence Day sweets covered.
+            </p>
+            <div class="flex justify-center space-x-2">
+              <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full">Sweet Cake</span>
+              <span class="bg-violet-100 text-violet-600 px-4 py-2 rounded-full">Black Cake</span>
+              <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full">Pozole Verde</span>
+              <span class="bg-gray-100 text-green-600 px-4 py-2 rounded-full">Healthy Food</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="bg-gray-900 text-white py-8">
+    </footer>
+  </body>
+</html>
