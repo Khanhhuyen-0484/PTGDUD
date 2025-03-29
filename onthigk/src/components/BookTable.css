@@ -1,0 +1,43 @@
+/* Căn lề trái và chỉnh font chữ */
+.form-label-custom {
+    text-align: left;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    display: block;
+  }
+  
+  .form-input-custom {
+    text-align: left;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+  }
+  
+  /* Căn chỉnh tiêu đề */
+  .booking-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Đổi màu nút */
+  .custom-btn {
+    background-color: #ff6600;  /* Màu cam */
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .custom-btn:hover {
+    background-color: #cc5500;
+  }
+  
