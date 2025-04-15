@@ -1,108 +1,166 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, DollarSign, Settings } from 'lucide-react';
-import StatsCard from '../components/StatsCard';
-import DetailedReport from '../components/DetailedReport';
-import Pagination from '../components/Pagination';
-import { fetchDashboardData, fetchCustomers } from '../api/apiService';
+import { getCustomers, addCustomer, updateCustomer, deleteCustomer } from '../services/api';
+import MetricCards from './MetricCards';
+import CustomerTable from './CustomerTable';
+import EditModal from './EditModal';
+import '../App.css';
 
 const Dashboard = () => {
-  const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState([]);
   const [customers, setCustomers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(11);
-  const [totalResults, setTotalResults] = useState(63);
+  const [customersPerPage] = useState(6);
+  const [editingCustomer, setEditingCustomer] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
-  // Fetch data on component mount
+  // Fetch customers on component mount
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        setLoading(true);
-        
-        // In a real app, you would uncomment these lines to fetch real data
-        // const dashboardData = await fetchDashboardData();
-        // const customersData = await fetchCustomers(currentPage, 10);
-        
-        // For demo purposes, we're using mock data
-        const mockStats = [
-          { 
-            title: 'Turnover', 
-            value: '$92,405', 
-            change: '+5.39%', 
-            buttonIcon: <ShoppingCart size={18} />, 
-            color: 'bg-pink-50' 
-          },
-          { 
-            title: 'Profit', 
-            value: '$32,218', 
-            change: '+5.39%', 
-            buttonIcon: <DollarSign size={18} />, 
-            color: 'bg-blue-50' 
-          },
-          { 
-            title: 'New customer', 
-            value: '298', 
-            change: '+6.84%', 
-            buttonIcon: <Settings size={18} />, 
-            color: 'bg-blue-50' 
-          },
-        ];
-        
-        const mockCustomers = [
-          { id: 1, name: 'Elizabeth Lee', avatar: '/api/placeholder/32/32', company: 'AvatarSystems', value: '$359', date: '10/07/2023', status: 'new' },
-          { id: 2, name: 'Carlos Garcia', avatar: '/api/placeholder/32/32', company: 'SmooozeShift', value: '$747', date: '24/07/2023', status: 'new' },
-          { id: 3, name: 'Elizabeth Bailey', avatar: '/api/placeholder/32/32', company: 'Prime Time Telecom', value: '$564', date: '08/08/2023', status: 'in-progress' },
-          { id: 4, name: 'Ryan Brown', avatar: '/api/placeholder/32/32', company: 'OmniTech Corporation', value: '$541', date: '31/08/2023', status: 'in-progress' },
-          { id: 5, name: 'Ryan Young', avatar: '/api/placeholder/32/32', company: 'DataStream Inc.', value: '$769', date: '01/09/2023', status: 'completed' },
-          { id: 6, name: 'Hailey Adams', avatar: '/api/placeholder/32/32', company: 'FlowRush', value: '$922', date: '10/06/2023', status: 'completed' },
-        ];
-        
-        setStats(mockStats);
-        setCustomers(mockCustomers);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error loading dashboard data:', error);
-        setLoading(false);
-      }
-    };
-    
-    loadData();
-  }, [currentPage]);
-  
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
+    fetchCustomers();
+  }, []);
+
+  const fetchCustomers = async () => {
+    try {
+      setLoading(true);
+      // Uncomment this to use real API
+      // const data = await getCustomers();
+      // setCustomers(data);
+      
+      // Mock data for testing
+      const mockCustomers = [
+        { id: 1, name: 'Elizabeth Lee', avatar: '/placeholder-avatar.png', company: 'AvatarSystems', value: '$359', date: '10/07/2023', status: 'New' },
+        { id: 2, name: 'Carlos Garcia', avatar: '/placeholder-avatar.png', company: 'SmooozeShift', value: '$747', date: '24/07/2023', status: 'New' },
+        { id: 3, name: 'Elizabeth Bailey', avatar: '/placeholder-avatar.png', company: 'Prime Time Telecom', value: '$564', date: '08/08/2023', status: 'In-progress' },
+        { id: 4, name: 'Ryan Brown', avatar: '/placeholder-avatar.png', company: 'OmniTech Corporation', value: '$541', date: '31/08/2023', status: 'In-progress' },
+        { id: 5, name: 'Ryan Young', avatar: '/placeholder-avatar.png', company: 'DataStream Inc.', value: '$769', date: '01/09/2023', status: 'Completed' },
+        { id: 6, name: 'Hailey Adams', avatar: '/placeholder-avatar.png', company: 'FlowRush', value: '$922', date: '10/06/2023', status: 'Completed' },
+      ];
+      setCustomers(mockCustomers);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+      setLoading(false);
+    }
   };
-  
-  if (loading) {
-    return <div className="flex justify-center items-center h-full">Loading...</div>;
-  }
-  
+
+  const handleEdit = (customer) => {
+    setEditingCustomer(customer);
+    setShowModal(true);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      // Uncomment to use real API
+      // await deleteCustomer(id);
+      
+      // Update local state
+      setCustomers(customers.filter(customer => customer.id !== id));
+    } catch (error) {
+      console.error('Error deleting customer:', error);
+    }
+  };
+
+  const handleSubmit = async (customerData) => {
+    try {
+      if (editingCustomer) {
+        // Update existing customer
+        // Uncomment to use real API
+        // const updated = await updateCustomer(editingCustomer.id, customerData);
+        
+        // Update local state
+        setCustomers(customers.map(c => c.id === editingCustomer.id ? { ...c, ...customerData } : c));
+      } else {
+        // Add new customer
+        // Uncomment to use real API
+        // const added = await addCustomer(customerData);
+        
+        // Update local state with mock ID
+        const newCustomer = {
+          id: customers.length + 1,
+          ...customerData,
+          date: new Date().toLocaleDateString('en-GB')
+        };
+        setCustomers([...customers, newCustomer]);
+      }
+      setShowModal(false);
+    } catch (error) {
+      console.error('Error saving customer:', error);
+    }
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Calculate metrics
+  const turnover = customers.reduce((sum, customer) => sum + Number(customer.value.replace('$', '')), 0);
+  const profit = turnover * 0.35; // Assuming 35% profit margin
+  const newCustomers = customers.filter(c => c.status === 'New').length;
+
   return (
-    <div>
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {stats.map((stat, index) => (
-          <StatsCard
-            key={index}
-            title={stat.title}
-            value={stat.value}
-            change={stat.change}
-            buttonIcon={stat.buttonIcon}
-            color={stat.color}
-          />
-        ))}
+    <div className="dashboard-container ml-64 p-8"> {/* Thêm margin-left để tránh sidebar */}
+      <div className="text-2xl font-bold mb-6">Dashboard</div>
+      
+      {/* Phần Overview với các thẻ metric */}
+      <div className="mb-8">
+        <h2 className="text-xl font-semibold mb-4">Overview</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Thẻ Turnover - Màu hồng nhạt như trong hình */}
+          <div className="bg-pink-50 p-6 rounded-lg">
+            <h3 className="text-gray-600 text-sm font-medium">Turnover</h3>
+            <p className="text-2xl font-bold my-2">${turnover.toLocaleString()}</p>
+            <p className="text-pink-500 text-sm">+5.39% period of change</p>
+          </div>
+
+          {/* Thẻ Profit - Màu xanh nhạt như trong hình */}
+          <div className="bg-blue-50 p-6 rounded-lg">
+            <h3 className="text-gray-600 text-sm font-medium">Profit</h3>
+            <p className="text-2xl font-bold my-2">${profit.toLocaleString()}</p>
+            <p className="text-blue-500 text-sm">+5.39% period of change</p>
+          </div>
+
+          {/* Thẻ New customer - Màu xanh nhạt như trong hình */}
+          <div className="bg-blue-50 p-6 rounded-lg">
+            <h3 className="text-gray-600 text-sm font-medium">New customer</h3>
+            <p className="text-2xl font-bold my-2">{newCustomers}</p>
+            <p className="text-green-500 text-sm">+6.84% period of change</p>
+          </div>
+        </div>
       </div>
-      
-      {/* Detailed Report */}
-      <DetailedReport customers={customers} />
-      
-      {/* Pagination */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        totalResults={totalResults}
-      />
+
+      {/* Phần Detailed Report */}
+      <section className="bg-white p-6 rounded-lg shadow">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold">
+            <span className="text-pink-500 mr-2"></span> Detailed report
+          </h2>
+          <div className="flex space-x-2">
+            <button className="flex items-center px-3 py-1 text-pink-500 border border-pink-200 rounded-md text-sm">
+              <span className="mr-1"></span> Import
+            </button>
+            <button className="flex items-center px-3 py-1 text-pink-500 border border-pink-200 rounded-md text-sm">
+              <span className="mr-1"></span> Export
+            </button>
+          </div>
+        </div>
+        
+        <CustomerTable
+          customers={customers}
+          currentPage={currentPage}
+          customersPerPage={customersPerPage}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onPageChange={handlePageChange}
+          loading={loading}
+        />
+      </section>
+
+      {showModal && (
+        <EditModal
+          customer={editingCustomer}
+          onClose={() => setShowModal(false)}
+          onSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 };
