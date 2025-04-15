@@ -1,111 +1,68 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { 
-  FiPieChart,
-  FiFolder,
-  FiUsers,
-  FiMessageSquare,
-  FiZap,
-  FiSettings // Thêm dòng này để import FiSettings
-} from 'react-icons/fi';
+  LayoutDashboard, 
+  FolderOpen, 
+  Users, 
+  BarChart2, 
+  MessageSquare, 
+  Code 
+} from 'lucide-react';
 
 const Sidebar = () => {
+  const menuItems = [
+    { icon: <LayoutDashboard size={20} />, text: 'Dashboard', active: true },
+    { icon: <FolderOpen size={20} />, text: 'Projects', active: false },
+    { icon: <Users size={20} />, text: 'Teams', active: false },
+    { icon: <BarChart2 size={20} />, text: 'Analytics', active: false },
+    { icon: <MessageSquare size={20} />, text: 'Messages', active: false },
+    { icon: <Code size={20} />, text: 'Integrations', active: false },
+  ];
+
   return (
-    <div className="w-64 bg-white text-gray-800 h-screen fixed left-0 top-0 p-4 flex flex-col border-r border-gray-200">
-      {/* Logo/Title */}
-      <div className="text-xl font-bold mb-8 p-2 border-b border-gray-200">
-        LOGO
+    <div className="w-64 bg-white border-r h-full flex flex-col">
+      {/* Logo */}
+      <div className="p-4 flex items-center space-x-2">
+        <div className="w-8 h-8 rounded bg-gradient-to-r from-pink-500 to-blue-500 flex items-center justify-center text-white font-bold">
+          M
+        </div>
+        <span className="text-xl font-semibold">Logo</span>
       </div>
-      
-      {/* Main Navigation */}
-      <nav className="flex-1">
-        <ul className="space-y-1">
-          <li>
-            <NavLink 
-              to="/dashboard" 
-              className={({ isActive }) => 
-                `flex items-center p-3 rounded-lg hover:bg-pink-700 hover:text-white transition-colors ${
-                  isActive ? 'bg-pink-700 text-white font-medium' : ''
-                }`
-              }
-            >
-              <FiPieChart className="mr-3 text-lg" />
-              Dashboard
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/projects" 
-              className={({ isActive }) => 
-                `flex items-center p-3 rounded-lg hover:bg-pink-700 hover:text-white transition-colors ${
-                  isActive ? 'bg-pink-700 text-white font-medium' : ''
-                }`
-              }
-            >
-              <FiFolder className="mr-3 text-lg" />
-              Projects
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/teams" 
-              className={({ isActive }) => 
-                `flex items-center p-3 rounded-lg hover:bg-pink-700 hover:text-white transition-colors ${
-                  isActive ? 'bg-pink-700 text-white font-medium' : ''
-                }`
-              }
-            >
-              <FiUsers className="mr-3 text-lg" />
-              Teams
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/messenger" 
-              className={({ isActive }) => 
-                `flex items-center p-3 rounded-lg hover:bg-pink-700 hover:text-white transition-colors ${
-                  isActive ? 'bg-pink-700 text-white font-medium' : ''
-                }`
-              }
-            >
-              <FiMessageSquare className="mr-3 text-lg" />
-              Messenger
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/integrations" 
-              className={({ isActive }) => 
-                `flex items-center p-3 rounded-lg hover:bg-pink-700 hover:text-white transition-colors ${
-                  isActive ? 'bg-pink-700 text-white font-medium' : ''
-                }`
-              }
-            >
-              <FiZap className="mr-3 text-lg" />
-              Integrations
-            </NavLink>
-          </li>
+
+      {/* Menu Items */}
+      <nav className="flex-1 mt-4">
+        <ul>
+          {menuItems.map((item, index) => (
+            <li key={index}>
+              <a 
+                href="#" 
+                className={`flex items-center px-4 py-3 text-sm ${
+                  item.active 
+                    ? 'bg-pink-500 text-white' 
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                <span className="mr-3">{item.icon}</span>
+                {item.text}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
 
-      {/* Bottom Settings */}
-      <div className="mt-auto pt-4 border-t border-gray-200">
-        <NavLink 
-          to="/settings" 
-          className={({ isActive }) => 
-            `flex items-center p-3 rounded-lg hover:bg-pink-700 hover:text-white transition-colors ${
-              isActive ? 'bg-pink-700 text-white font-medium' : ''
-            }`
-          }
-        >
-          <FiSettings className="mr-3 text-lg" />
-          Settings
-        </NavLink>
+      {/* Promo Section */}
+      <div className="p-4 mb-8">
+        <div className="bg-gray-100 p-4 rounded-lg text-center">
+          <div className="flex justify-center mb-3">
+            <img src="/api/placeholder/180/120" alt="Promo" className="rounded" />
+          </div>
+          <p className="font-medium text-gray-800">V2.0 is available</p>
+          <button className="mt-2 w-full border border-gray-300 rounded py-2 px-4 text-sm">
+            Try now
+          </button>
+        </div>
       </div>
     </div>
   );
 };
-// ... (phần code component)
 
-// Thêm dòng này ở cuối file
 export default Sidebar;
