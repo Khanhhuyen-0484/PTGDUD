@@ -9,7 +9,9 @@
 6.  ReactRouter
    ![image](https://github.com/user-attachments/assets/b50feb9c-2b3f-4364-93b6-d2d256cca039)
 
-7
+7 add customer
+![image](https://github.com/user-attachments/assets/43e56c41-f307-45c3-8966-7ef3ea3a3298)
+
 8.Click Edit Modal
    ![image](https://github.com/user-attachments/assets/cb151be7-ec02-40e4-880b-ba5bd1d40022)
 9. Css all admin app
