@@ -12,7 +12,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            {/* Thêm các route khác tại đây */}
+            
           </Routes>
         </div>
       </div>

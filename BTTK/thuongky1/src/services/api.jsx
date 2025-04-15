@@ -41,4 +41,4 @@ const mockCustomers = [
       customers = customers.filter(c => c.id !== id);
       setTimeout(() => resolve(), 500);
     });
-  };
+  };s
