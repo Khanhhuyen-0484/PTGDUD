@@ -15,6 +15,13 @@ o Dùng checkbox hoặc nút toggle
 thành)
 ![image](https://github.com/user-attachments/assets/c79657e3-a9fc-40bc-88a2-e3d9e54267aa)
 7. Hiển thị tổng số công việc & số công việc hoàn thành
+![image](https://github.com/user-attachments/assets/f6477ccf-7645-412b-88e1-fba8fd84005a)
+8.Lưu danh sách công việc vào localStorage.
+![image](https://github.com/user-attachments/assets/db38c105-f5a5-45ed-bf84-77192269a604)
+9.Tạo component riêng cho từng công việc (TodoItem).
+
+
+
 
 
 
