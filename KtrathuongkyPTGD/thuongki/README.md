@@ -3,4 +3,8 @@ Tạo cấ trúc dự án RactJS (dùng Vit hoặc Crat Ract App)
 Tạo giao diện hiển thị danh sách công việc mẫ (mock data).
 o Hiển thị tên công việc, trạng thái (hoàn thành/ch), và nút xoá.
 ![image](https://github.com/user-attachments/assets/048fcc18-8c80-4849-bf6f-58d5c3961780)
+Thêm tính năng thêm công việc mới.
+o Có ô input và nút “Thêm”
+![image](https://github.com/user-attachments/assets/0fa6abdf-f89b-442e-8071-acaafc171f4a)
+
 
